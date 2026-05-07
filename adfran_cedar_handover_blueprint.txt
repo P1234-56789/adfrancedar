@@ -1,0 +1,35 @@
+HANDOVER SCRIPT: ADFRAN CEDAR CATALOG (STITCH/IDX)
+Project Identity: ADFRAN Cedar Enterprise
+Primary Developer: [Your Name]
+Lead Craftsman/User: Francis Adusu
+Platform: Google Project IDX (Stitch) + Firebase (Google Cloud)
+
+1. SYSTEM ARCHITECTURE OVERVIEW
+The system is built as a Serverless Portfolio. It replaces traditional CMS (like WordPress or Cloudinary) with a direct link between a private Admin Dashboard and a Public Gallery.
+- Hosting: Google Firebase Hosting.
+- Storage: Google Cloud Storage (for raw high-res furniture images).
+- Database: Google Firestore (for image metadata and real-time synchronization).
+
+2. THE "DASHBOARD-TO-CATALOG" FLOW
+To ensure ease of use for the Master Craftsman, the handover follows this operational flow:
+- Input: The Admin (Francis) accesses a hidden route on the web app.
+- Process: He selects a photo of a completed project (e.g., a "Cedar Wardrobe") from his phone’s gallery.
+- Upload: The file is pushed to a Google Cloud bucket.
+- Sync: A document is created in Firestore.
+- Output: The website instantly reflects the new piece without needing a rebuild or code update.
+
+3. KEY CONFIGURATION TASKS IN GOOGLE CLOUD
+- Firebase SDK Initialization: Create a firebase.js utility bridge.
+- Security Rules (Storage): WRITE access for Admin, READ for public.
+- Image Optimization: Fast loading for mobile users in Ghana.
+
+4. USER HANDOVER: OPERATIONAL INSTRUCTIONS
+- Step A: Navigate to the private Admin URL.
+- Step B: Capture or select a photo.
+- Step C: Hit "Post to Catalog."
+- Step D: WhatsApp "Inquiry" link auto-generation.
+
+5. MAINTENANCE & SCALING
+- Zero-Maintenance: No server management.
+- Cost Management: Google Cloud "Always Free" tier.
+- Scalability: Support for categories (Kitchen, Bedroom, Office).

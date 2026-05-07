@@ -1,0 +1,26 @@
+// Firebase Storage Security Rules - ADFRAN Cedar Enterprise
+// Path: storage.rules
+
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // Helper function to check if the user is the authenticated Admin
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'francis@adfrancedar.com';
+    }
+
+    // Catalog Images: Publicly readable, Admin-only write
+    match /catalog/{imageId} {
+      allow read: if true;
+      allow write: if isAdmin() 
+                   && request.resource.size < 5 * 1024 * 1024 // Limit uploads to 5MB
+                   && request.resource.contentType.matches('image/.*'); // Only allow image files
+    }
+
+    // Default: Deny all other access
+    match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

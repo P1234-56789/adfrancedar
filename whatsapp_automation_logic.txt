@@ -1,0 +1,17 @@
+/**
+ * WhatsApp Inquiry Automation Logic
+ * Generates dynamic WhatsApp click-to-chat links for ADFRAN Cedar pieces.
+ */
+
+const WHATSAPP_NUMBER = "+233200000000"; // Placeholder for Francis's actual business number
+
+/**
+ * Generates a pre-filled WhatsApp link for a specific catalog item.
+ * @param {string} itemTitle - The name of the furniture piece (e.g., "Cedar Sideboard").
+ * @returns {string} - The encoded WhatsApp URL.
+ */
+export const generateInquiryLink = (itemTitle) => {
+  const message = `Hello Francis, I'm interested in the ${itemTitle} I saw in your ADFRAN Cedar catalog. Could you provide more details?`;
+  const encodedMessage = encodeURIComponent(message);
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+};
